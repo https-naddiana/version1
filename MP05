@@ -1,0 +1,109 @@
+import java.util.Scanner;
+
+public class Start {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner entradaDatos = new Scanner(System.in);
+		String opcion = "";
+
+		float valorMoneda = 0.0f;
+		float tasa = 0.0f;
+		float resultado = 0.0f;
+		String miMenu="";
+		int i=0;
+
+		do {
+			mostrarMenu ();
+			
+			System.out.print("Escribe la opcion:");
+			opcion = entradaDatos.next();
+
+			System.out.println("La opcion es:" + opcion);
+
+			if (opcion.equals("1")) {
+				// Conversion
+				System.out.println(" Conversion Euros dolares ");
+				System.out.print("Escriba la cantidad de Euros a convertir:");
+				valorMoneda = entradaDatos.nextFloat();
+				
+				resultado= Operaciones.eurosDolares(valorMoneda, 1.16f);
+				
+				if (resultado==-1.0f)
+				{
+					System.out.println("Error division por 0"+ resultado);
+
+				}
+				else 
+				{
+					System.out.println("El valor en dolares de " + valorMoneda + " euros es " + resultado + " dolares");
+
+				}
+			
+			} else if (opcion.equals("2")) {
+				// Conversion
+				System.out.println(" Conversion Dolares Euros ");
+
+				System.out.print("Escriba la cantidad de Dolares a convertir:");
+				valorMoneda = entradaDatos.nextFloat();
+				
+				
+				resultado= Operaciones.dolaresEuros(valorMoneda,1.16f);
+				if (resultado==-1.0f)
+				{
+					System.out.println("Se ha producido un error.");
+
+				}
+				else 
+				{
+					System.out.println("El valor en euros de " + valorMoneda + " dolares es " + resultado + " euros");
+				}
+			} else if (opcion.equals("s")) {
+				// Conversion
+				System.out.println(" Salir ");
+			} else {
+				System.out.println("Opcion erronea");
+			}
+		} while (!opcion.equals("s"));
+	}
+ public static void mostrarMenu () {
+	 	System.out.println("**********");
+		System.out.println("***MENU***");
+		System.out.println("1.- Convertir de Euros a Dolares");
+		System.out.println("2.- Convertir de Dolares a Euros");
+		System.out.println("s.- Salir");
+ }
+ 
+}
+
+public class Operaciones {
+
+	public static float eurosDolares(float valor, float tasa)
+	{
+		if (valor > 0)
+		{
+			float resultado = valor * tasa;
+			return resultado;
+		}
+		else
+		{
+			return -1.0f;
+		}
+		
+	}
+	
+	public static float dolaresEuros(float valor,float tasa)
+	{
+		
+		if (valor > 0)
+		{
+			float resultado = valor / tasa;
+			return resultado;
+		}
+		else
+		{
+			return -1.0f;
+		}
+	}
+}
